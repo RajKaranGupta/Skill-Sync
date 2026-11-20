@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SkillSync — Learn. Teach. Grow.</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--panel:#0a0a0d;--p2:#15151a;--line:#24242d;--text:#f6f8fc;--mut:#8d92a3;--a:#1b9de8;--b:#ff2e93;--c:#ff5fae;--sh:0 8px 30px rgba(0,0,0,.6);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Plus Jakarta Sans",Inter,Arial,sans-serif;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23fff' stroke-opacity='.05'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%23fff' stroke-opacity='.05'/%3E%3C/svg%3E") fixed;color:var(--text);-webkit-font-smoothing:antialiased}
+.nav,.option,.ci,.searchbar input,.searchbar select,.field input,.field select,.bub,#toast,.note,.primary,.secondary{--k:16px}
+.stat,.card{--k:22px}.hero{--k:60px}.mc{--k:34px}.cert{--k:40px}.chip,.badge,.match{--k:9px}
+.stat,.card,.hero,.mc,.cert,.nav,.option,.ci,.searchbar input,.searchbar select,.field input,.field select,.bub,#toast,.note,.primary,.secondary,.chip,.badge,.match,.stat::before,.card::before,.secondary::before{clip-path:polygon(var(--k) 0,calc(100% - var(--k)) 0,100% 50%,calc(100% - var(--k)) 100%,var(--k) 100%,0 50%)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:40}
+button,input,select{font:inherit}button{cursor:pointer;border:0}
+h1,h2,h3{margin:0 0 8px}h3{font-size:16px}p{line-height:1.55}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:262px;background:var(--panel);border-right:1px solid var(--line);padding:calc(22px + env(safe-area-inset-top,0px)) 14px 22px;overflow-y:auto;z-index:20}
+.brand{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:800;letter-spacing:-.5px}
+.logo{width:42px;height:42px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--a),var(--b))}
+.tag{color:var(--mut);font-size:12px;margin:4px 0 18px 48px}
+nav{display:grid;gap:3px}
+.nav{background:transparent;color:var(--mut);text-align:left;padding:11px 26px;font-weight:500;transition:.2s}
+.nav:hover{background:var(--p2);color:var(--text);transform:translateX(3px)}
+.nav.active{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;font-weight:700;box-shadow:0 0 24px rgba(27,157,232,.4)}
+main{margin-left:262px;min-height:100vh}
+header{height:78px;padding:14px 34px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;position:sticky;top:env(safe-area-inset-top,0px);z-index:15}
+.eyebrow{font-size:10px;color:var(--mut);letter-spacing:2.5px;margin:0 0 2px;font-weight:700}
+header h2{margin:0;font-size:20px}
+.ha{display:flex;gap:10px;align-items:center}
+.ib{position:relative;background:var(--p2);color:var(--text);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);width:48px;height:48px;transition:.2s}
+.ib:hover{transform:translateY(-2px);box-shadow:var(--sh)}
+.ib b{position:absolute;right:5px;top:4px;background:var(--c);color:#fff;border-radius:99px;font-size:9px;padding:3px 6px}
+.pm{width:48px;height:48px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(135deg,var(--a),var(--c));color:#fff;font-weight:800}
+.mm{display:none;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px}
+.content{padding:34px;max-width:1400px;margin:auto;animation:in .45s ease}
+@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero{position:relative;overflow:hidden;padding:52px 90px;color:#fff;border:1px solid var(--line);background:radial-gradient(circle at 90% 10%,rgba(27,157,232,.5),transparent 38%),radial-gradient(circle at 8% 100%,rgba(255,46,147,.42),transparent 36%),#030304;box-shadow:0 20px 60px rgba(27,157,232,.15)}
+.hero h1{font-size:clamp(36px,5.2vw,64px);line-height:1;max-width:700px;margin:10px 0 18px;letter-spacing:-2.5px}
+.hero h1 span{background:linear-gradient(90deg,#4cc4ff,#ff4fa3);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:rgba(255,255,255,.82);max-width:600px}.hero .eyebrow{color:rgba(255,255,255,.7)}
+.searchbar{display:flex;gap:10px;max-width:660px;margin-top:22px}
+.searchbar input,.field input,.field select,.searchbar select{flex:1;background:var(--p2);border:0;color:var(--text);padding:14px 30px;outline:none;transition:.2s}
+.searchbar input:focus,.field input:focus,.field select:focus{background:color-mix(in srgb,var(--a) 22%,var(--p2))}
+.primary{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;padding:13px 32px;font-weight:700;transition:.2s}
+.primary:hover{transform:translateY(-2px);box-shadow:0 0 34px rgba(255,46,147,.55)}
+.hero .primary{background:var(--b);color:#fff}
+.secondary{position:relative;background:linear-gradient(135deg,color-mix(in srgb,var(--a) 50%,var(--line)),color-mix(in srgb,var(--b) 50%,var(--line)));color:var(--text);padding:11px 28px;font-weight:600;transition:.2s}
+.secondary:hover{color:var(--b)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0}
+.stat,.card{position:relative;background:linear-gradient(135deg,var(--line),color-mix(in srgb,var(--line) 55%,var(--a)));padding:26px 34px;transition:.25s}
+.stat::before,.card::before,.secondary::before{content:"";position:absolute;inset:1.5px;background:var(--panel);z-index:-1}
+.card:hover,.stat:hover{transform:translateY(-4px);background:linear-gradient(135deg,var(--a),var(--b))}
+.num{font-size:28px;font-weight:800;margin-top:4px}
+.stat:nth-child(odd) .num{color:var(--a)}.stat:nth-child(even) .num{color:var(--b)}
+.muted{color:var(--mut)}
+.st{display:flex;justify-content:space-between;align-items:end;margin:30px 0 14px}.st h2{margin:0;font-size:21px}
+.grid,.people{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pt{display:flex;gap:12px;align-items:center}
+.avatar{width:54px;height:54px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:grid;place-items:center;color:#fff;font-weight:800;flex:none}
+.pt h3{margin:0 0 2px}
+.match{display:inline-flex;align-items:center;gap:6px;color:var(--b);background:color-mix(in srgb,var(--b) 12%,transparent);padding:5px 16px;font-size:11px;font-weight:700;margin-top:12px}
+.bar{height:6px;background:var(--p2);border-radius:9px;margin-top:10px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b));border-radius:9px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}
+.chip{font-size:11px;padding:6px 16px;background:var(--p2);color:var(--mut);font-weight:500}
+.actions{display:flex;gap:8px;margin-top:15px}.actions button{flex:1}
+.ph{margin-bottom:22px}.ph h1{font-size:34px;letter-spacing:-1px}.ph p{color:var(--mut);margin:0}
+.progress{height:9px;background:var(--p2);border-radius:20px;overflow:hidden;margin:10px 0}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b));border-radius:20px}
+.badge{display:inline-block;padding:5px 16px;background:color-mix(in srgb,var(--a) 14%,transparent);color:var(--a);font-size:11px;font-weight:700;margin-bottom:6px}
+.score{font-size:46px;font-weight:800;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.option{display:block;width:100%;text-align:left;margin:8px 0;padding:14px 34px;background:var(--p2);color:var(--text);transition:.2s}
+.option:hover{background:color-mix(in srgb,var(--a) 25%,var(--p2));transform:translateX(4px)}
+.leader{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.leader:last-child{border:0}.rank{width:30px;font-weight:800;color:var(--mut)}
+.leader:nth-child(-n+3) .rank{color:var(--b)}
+.modal{position:fixed;inset:0;background:rgba(8,10,25,.65);backdrop-filter:blur(6px);display:grid;place-items:center;padding:20px;z-index:60;animation:fade .2s}
+@keyframes fade{from{opacity:0}}
+.hidden{display:none}
+.mc{position:relative;width:min(650px,100%);max-height:90vh;overflow:auto;background:var(--p2);padding:44px 56px;animation:in .3s}
+.close{position:absolute;right:50px;top:16px;background:transparent;color:var(--mut);font-size:28px}
+.field{display:grid;gap:7px;margin:13px 0}.field label{font-size:12px;color:var(--mut);font-weight:700}
+.note{padding:14px 34px;background:var(--p2);color:var(--text);margin-bottom:10px}
+.cert{padding:36px 56px;text-align:center;background:radial-gradient(circle at 50% 0,color-mix(in srgb,var(--a) 30%,transparent),var(--p2) 70%)}
+#toast{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));background:linear-gradient(135deg,var(--a),var(--b));color:#fff;padding:13px 34px;z-index:80;opacity:0;transform:translateY(15px);transition:.25s;font-weight:600}
+#toast.show{opacity:1;transform:none}
+.lvl{display:flex;flex-direction:column;gap:4px;min-width:130px;font-size:11px;font-weight:700;color:var(--mut)}.lvl .bar{margin:0}
+.thread{height:280px;overflow:auto;display:flex;flex-direction:column;gap:8px;margin:14px 0;padding:4px}
+.bub{max-width:78%;padding:10px 26px;background:var(--p2);line-height:1.4;animation:in .25s}
+.bub.me{align-self:flex-end;background:linear-gradient(135deg,var(--a),var(--b));color:#fff;border-radius:16px 16px 4px 16px}
+.ci{flex:1;background:var(--p2);border:0;color:var(--text);padding:12px 28px;outline:none}
+@media(max-width:950px){.sidebar{transform:translateX(-100%);transition:.25s}.sidebar.open{transform:none}main{margin-left:0}.mm{display:block}header{justify-content:flex-start;gap:10px;padding:14px 18px}.ha{margin-left:auto}.grid,.people,.stats{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.lvl{display:none}.content{padding:18px}.hero{padding:34px 46px;--k:30px}.searchbar{flex-direction:column}.grid,.people,.stats{grid-template-columns:1fr}.actions{flex-direction:column}}
+</style>
+</head>
+<body>
+<div id="toast"></div>
+<aside class="sidebar">
+  <div class="brand"><div class="logo">↻</div> SkillSync</div>
+  <p class="tag">Learn. Teach. Grow.</p>
+  <nav id="nav"></nav>
+</aside>
+<main>
+  <header>
+    <button class="mm" onclick="toggleSidebar()">☰</button>
+    <div><p class="eyebrow">STUDENT SKILL NETWORK</p><h2 id="pageTitle">Welcome back 👋</h2></div>
+    <div class="ha"><div class="lvl" id="lvl"></div>
+      <button class="ib" onclick="showNotifications()">🔔<b id="notifDot">3</b></button>
+      <button class="pm" onclick="go('profile')">RK</button>
+    </div>
+  </header>
+  <section id="app" class="content"></section>
+</main>
+<div id="modal" class="modal hidden"><div class="mc"><button class="close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
+
+<script>
+const students=[
+["Rahul Sharma","DSA","Python",96,4.8,"Intermediate","6–9 PM","RS"],
+["Raj Karan Gupta","Web Development","DSA",95,4.8,"Intermediate","Evening","RK"],
+["Neha Verma","Python","AI / ML",94,4.9,"Advanced","5–8 PM","NV"],
+["Priya Singh","UI/UX","JavaScript",91,4.7,"Intermediate","7–10 PM","PS"],
+["Aman Gupta","C++","DSA",88,4.6,"Advanced","6–8 PM","AG"],
+["Simran Kaur","UI/UX","React",86,4.8,"Intermediate","4–7 PM","SK"],
+["Arjun Kumar","React","JavaScript",84,4.5,"Advanced","8–10 PM","AK"],
+["Rohan Mehta","Java","SQL",82,4.6,"Intermediate","6–9 PM","RM"],
+["Ananya Sharma","Figma","Web Design",80,4.9,"Advanced","5–7 PM","AS"],
+["Karan Singh","Python","Data Science",79,4.7,"Intermediate","7–9 PM","KS"],
+["Ishita Verma","Excel","Power BI",77,4.8,"Intermediate","6–8 PM","IV"],
+["Yash Thakur","Networking","Cybersecurity",75,4.6,"Advanced","8–10 PM","YT"],
+["Sakshi Sharma","Public Speaking","Presentation Skills",73,4.9,"Advanced","5–9 PM","SS"],
+["Harsh Vardhan","Git / GitHub","Open Source",71,4.5,"Intermediate","7–10 PM","HV"],
+["Nikhil Kumar","Machine Learning","Python",69,4.6,"Advanced","6–8 PM","NK"],
+["Tanya Arora","Video Editing","Content Creation",67,4.8,"Intermediate","5–8 PM","TA"],
+["Dev Patel","Kotlin","Android Development",65,4.7,"Intermediate","7–9 PM","DP"],
+["Pooja Sharma","English Speaking","Communication",63,4.9,"Intermediate","4–7 PM","PS"],
+["Mohit Saini","C","C++",61,4.5,"Beginner","6–8 PM","MS"]
+].map(([name,teach,want,match,rating,level,time,initial])=>({name,teach,want,match,rating,level,time,initial}));
+
+const DEF={coins:240,streak:7,swaps:3,tests:2,learned:5,taught:4,verified:2,requests:[]};
+let state;
+try{state=JSON.parse(localStorage.getItem("koveraState")||"null")||{...DEF}}catch(e){state={...DEF}}
+state.chats=state.chats||{};state.swapList=state.swapList||[];state.last=state.last||"";
+const app=document.getElementById("app"),title=document.getElementById("pageTitle");
+function save(){try{localStorage.setItem("koveraState",JSON.stringify(state))}catch(e){}updLvl()}
+function updLvl(){const l=document.getElementById("lvl");if(l)l.innerHTML=`<span>Lv ${Math.floor(state.coins/100)+1} • 🪙 ${state.coins}</span><div class="bar"><i style="width:${state.coins%100}%"></i></div>`}
+function checkIn(){const t=new Date().toDateString();if(state.last===t){toast("Already checked in today");return}state.last=t;state.streak++;state.coins+=5;save();toast(`Streak: ${state.streak} days! +5 SkillCoins`);home()}
+function resetAll(){state={...DEF,requests:[],chats:{},swapList:[],last:""};save();toast("Data reset");go("home")}
+function toast(m){const t=document.getElementById("toast");t.className="show";t.textContent=m;setTimeout(()=>t.className="",2200)}
+const NAV=[["home","🏠 Home"],["discover","🔍 Find People"],["matches","🤝 My Matches"],["offer","🎓 Offer My Skill"],["request","📚 Request Skill"],["swap","🔄 Skill Swaps"],["tests","📝 Tests"],["challenges","🎯 Challenges"],["community","👥 Group Swaps"],["chat","💬 Chat"],["schedule","📅 Schedule"],["coins","🪙 SkillCoins"],["leaderboard","🏆 Leaderboard"],["progress","📈 My Progress"],["achievements","🎖️ Achievements"],["profile","👤 Profile"]];
+document.getElementById("nav").innerHTML=NAV.map(([p,l],i)=>`<button class="nav${i?"":" active"}" data-page="${p}">${l}</button>`).join("");
+let cur="home";
+function go(page){cur=page;document.querySelectorAll(".nav").forEach(b=>b.classList.toggle("active",b.dataset.page===page));render(page);document.querySelector(".sidebar").classList.remove("open");window.scrollTo(0,0);try{if(location.hash.slice(1)!==page)location.hash=page}catch(e){}}
+function toggleSidebar(){document.querySelector(".sidebar").classList.toggle("open")}
+function openModal(h){document.getElementById("modalBody").innerHTML=h;document.getElementById("modal").classList.remove("hidden")}
+function closeModal(){document.getElementById("modal").classList.add("hidden")}
+const hue=s=>[...s].reduce((a,c)=>a+c.charCodeAt(0),0)*7%360;
+const av=(n,i,sz)=>`<div class="avatar" style="background:linear-gradient(135deg,hsl(${hue(n)} 75% 58%),hsl(${(hue(n)+50)%360} 80% 52%));${sz?`width:${sz}px;height:${sz}px`:""}">${i}</div>`;
+const ph=(h,p)=>`<div class="ph"><h1>${h}</h1><p>${p}</p></div>`;
+const idx=s=>students.indexOf(s);
+
+function personCard(s){const i=idx(s);return `<div class="card"><div class="pt">${av(s.name,s.initial)}<div><h3>${s.name}</h3><span class="muted">${s.level} • ⭐ ${s.rating}</span></div></div>
+<span class="match">✨ ${s.match}% match</span><div class="bar"><i style="width:${s.match}%"></i></div>
+<div class="chips"><span class="chip">Teaches: ${s.teach}</span><span class="chip">Wants: ${s.want}</span></div>
+<small class="muted">🕐 ${s.time}</small>
+<div class="actions"><button class="primary" onclick="startSwap(${i})">Start Swap</button><button class="secondary" onclick="viewProfile(${i})">Profile</button></div></div>`}
+
+function startSwap(i){const s=students[i];openModal(`<h2>🤝 Skill Swap with ${s.name}</h2><p class="muted">AI found a ${s.match}% compatible exchange.</p>
+<div class="note">You learn <b>${s.teach}</b> from ${s.name} → ${s.name} learns <b>${s.want}</b> from you.</div>
+<h3>Suggested session</h3><p>10 min • Introductions &amp; goals<br>20 min • ${s.teach} teaching<br>20 min • Your skill: ${s.want}<br>10 min • Practice + feedback</p>
+<button class="primary" onclick="confirmSwap('${s.name}')">Send Swap Request</button>`)}
+function confirmSwap(n){const s=students.find(x=>x.name===n);if(state.swapList.some(x=>x.name===n)){closeModal();toast(`You already have a swap with ${n}`);go("swap");return}
+state.swapList.push({name:n,teach:s.teach,want:s.want,status:"pending"});state.swaps++;state.coins+=10;save();closeModal();toast(`Swap request sent to ${n}! +10 SkillCoins`);go("swap")}
+function completeSwap(i){state.swapList[i].status="completed";state.coins+=40;state.taught++;save();toast("Swap completed! +40 SkillCoins");swap()}
+function viewProfile(i){const s=students[i];openModal(`<h2>${s.name}</h2><p class="muted">CSE Student • ⭐ ${s.rating}</p>
+<div class="chips"><span class="chip">🎓 ${s.level}</span><span class="chip">🕐 ${s.time}</span><span class="chip">✨ ${s.match}% Match</span></div>
+<h3>Can teach</h3><p>${s.teach}</p><h3>Wants to learn</h3><p>${s.want}</p>
+<button class="primary" onclick="startSwap(${i})">Request Skill Swap</button>`)}
+
+function home(){title.textContent="Welcome back 👋";
+app.innerHTML=`<div class="hero"><p class="eyebrow">YOUR STUDENT SKILL NETWORK</p><h1>Learn. <span>Teach.</span><br>Grow.</h1>
+<p>Exchange skills with students, build real connections, verify what you learn, and grow together.</p>
+<div class="searchbar"><input id="quickSearch" placeholder="What do you want to learn? e.g. Python, DSA, UI/UX"><button class="primary" onclick="quickFind()">Find My Match →</button></div></div>
+<div class="stats"><div class="stat"><span class="muted">🔥 Learning streak</span><div class="num">${state.streak} days</div></div>
+<div class="stat"><span class="muted">🪙 SkillCoins</span><div class="num">${state.coins}</div></div>
+<div class="stat"><span class="muted">🔄 Swaps completed</span><div class="num">${state.swaps}</div></div>
+<div class="stat"><span class="muted">🏅 Verified skills</span><div class="num">${state.verified}</div></div></div>
+<div class="st"><h2>🤝 Recommended Skill Swaps</h2><button class="secondary" onclick="go('discover')">View all</button></div>
+<div class="people">${students.slice(0,3).map(personCard).join("")}</div>
+<div class="st"><h2>⚡ Quick Actions</h2></div>
+<div class="grid"><div class="card"><h3>📝 Take a Test</h3><p class="muted">Check what you learned.</p><button class="primary" onclick="go('tests')">Start Test</button></div>
+<div class="card"><h3>🎓 Offer a Skill</h3><p class="muted">Teach someone today.</p><button class="secondary" onclick="go('offer')">Add Skill</button></div>
+<div class="card"><h3>📚 Request a Skill</h3><p class="muted">Find your next skill.</p><button class="secondary" onclick="go('request')">Request</button></div>
+<div class="card"><h3>🔥 Daily Check-in</h3><p class="muted">Keep your streak alive.</p><button class="primary" onclick="checkIn()">Check in +5</button></div></div>`}
+function quickFind(){const q=document.getElementById("quickSearch").value.trim();go("discover");setTimeout(()=>{document.getElementById("search").value=q;filterPeople()},0)}
+
+function discover(){title.textContent="Find People & Skills";
+app.innerHTML=ph("🔍 Find your skill partner","Search students and discover your best skill exchange.")+`<div class="searchbar"><input id="search" placeholder="Search skill or student..." oninput="filterPeople()"><select id="level" onchange="filterPeople()"><option value="">All levels</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select><select id="sort" onchange="filterPeople()"><option value="match">Best match</option><option value="rating">Top rated</option><option value="name">A–Z</option></select></div>
+<p class="muted" id="cnt" style="margin:14px 0 0">19 students found</p>
+<div id="peopleList" class="people" style="margin-top:10px">${students.map(personCard).join("")}</div>`}
+function filterPeople(){const q=(document.getElementById("search").value||"").toLowerCase(),lv=document.getElementById("level").value;
+const so=document.getElementById("sort").value;const l=students.filter(s=>(s.name+s.teach+s.want).toLowerCase().includes(q)&&(!lv||s.level===lv)).sort((a,b)=>so==="rating"?b.rating-a.rating:so==="name"?a.name.localeCompare(b.name):b.match-a.match);document.getElementById("cnt").textContent=l.length+" students found";
+document.getElementById("peopleList").innerHTML=l.length?l.map(personCard).join(""):`<div class="card"><h3>No students found</h3><p class="muted">Try another skill.</p></div>`}
+
+function matches(){title.textContent="My Matches";
+app.innerHTML=ph("🤝 Your AI Matches","Students ranked by skill compatibility.")+`<div class="people">${students.slice(0,8).sort((a,b)=>b.match-a.match).map(personCard).join("")}</div>`}
+
+function formPage(type){const o=type==="offer";title.textContent=o?"Offer My Skill":"Request a Skill";
+app.innerHTML=ph(o?"🎓 Offer a Skill":"📚 Request a Skill",o?"Tell students what you can teach.":"Tell students what you want to learn.")+`<div class="card" style="max-width:700px">
+<div class="field"><label>Skill</label><input id="skill" placeholder="${o?"e.g. Python, Photoshop":"e.g. DSA, React"}"></div>
+<div class="field"><label>Level</label><select id="skillLevel"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></div>
+<div class="field"><label>Availability</label><input id="availability" placeholder="e.g. 6–9 PM"></div>
+<button class="primary" onclick="saveSkill(${o})">${o?"Publish My Skill":"Post Skill Request"}</button></div>`}
+function saveSkill(o){const skill=document.getElementById("skill").value.trim();if(!skill){toast("Please enter a skill.");return}
+state.requests.push({type:o?"offer":"request",skill});save();toast(o?`You are now offering ${skill}!`:`Request for ${skill} posted!`);go(o?"profile":"request")}
+
+function request(){title.textContent="Skill Requests";
+app.innerHTML=ph("📚 Skill Requests Feed","See what students want to learn.")+`<div class="grid">${students.slice(0,9).map(s=>`<div class="card"><span class="badge">WANTS TO LEARN</span><div class="pt" style="margin:8px 0">${av(s.name,s.initial,40)}<h3>${s.name}</h3></div>
+<p>Looking for <b>${s.want}</b></p><p class="muted">Can teach: ${s.teach}</p><button class="secondary" onclick="startSwap(${idx(s)})">Offer an Exchange</button></div>`).join("")}</div>`}
+
+function swap(){title.textContent="Skill Swaps";
+app.innerHTML=ph("🔄 My Skill Swaps","Your exchange activity and sessions.")+`<div class="grid">
+<div class="card"><span class="badge">UPCOMING</span><h3>Rahul Sharma ↔ You</h3><p>DSA ↔ Python</p><p class="muted">Today • 7:00 PM • 60 min</p><button class="primary" onclick="toast('Session room opened!')">Enter Session</button></div>
+<div class="card"><span class="badge">COMPLETED</span><h3>Neha Verma ↔ You</h3><p>Python ↔ AI/ML</p><button class="secondary" onclick="go('tests')">Take Test</button></div>
+<div class="card"><span class="badge">COMPLETED</span><h3>Priya Singh ↔ You</h3><p>UI/UX ↔ JavaScript</p><button class="secondary" onclick="ratePartner()">Rate Partner</button></div>${state.swapList.map((x,i)=>`<div class="card"><span class="badge">${x.status.toUpperCase()}</span><h3>${x.name} ↔ You</h3><p>${x.teach} ↔ ${x.want}</p>${x.status==="pending"?`<button class="primary" onclick="completeSwap(${i})">Mark as Completed (+40)</button>`:`<button class="secondary" onclick="go('tests')">Take Test</button>`}</div>`).join("")}</div>`}
+function ratePartner(){openModal(`<h2>⭐ Rate your swap</h2><p>How was your experience?</p><div class="actions">${[1,2,3,4,5].map(n=>`<button class="secondary" onclick="closeModal();toast('Thanks for your rating!')">${n} ⭐</button>`).join("")}</div>`)}
+
+const tests={
+Python:[["What does len([1,2,3]) return?",["2","3","4","Error"],1],["Which keyword defines a function?",["func","define","def","function"],2],["What is the output of 2**3?",["5","6","8","9"],2]],
+DSA:[["Which structure follows FIFO?",["Stack","Queue","Tree","Graph"],1],["Binary search needs the data to be...",["Random","Sorted","Duplicated","Encrypted"],1],["Which is a linear data structure?",["Array","Graph","Tree","Heap"],0]],
+JavaScript:[["Which keyword declares a constant?",["var","let","const","fixed"],2],["Which method converts JSON text to an object?",["JSON.parse","JSON.make","JSON.object","parse.JSON"],0],["What does === compare?",["Only type","Only value","Value and type","Nothing"],2]]};
+function testsPage(){title.textContent="Tests";
+app.innerHTML=ph("📝 Test What You Learned","Complete an assessment after a SkillSync swap.")+`<div class="grid">${Object.keys(tests).map(s=>`<div class="card"><span class="badge">SKILL TEST</span><h3>${s} Fundamentals</h3><p class="muted">3 questions • Instant result</p><button class="primary" onclick="takeTest('${s}')">Start Test →</button></div>`).join("")}</div>`}
+function takeTest(skill){const qs=tests[skill];let cur=0,score=0;
+function show(){const q=qs[cur];openModal(`<span class="badge">${skill} TEST • ${cur+1}/${qs.length}</span><h2>${q[0]}</h2>${q[1].map((o,i)=>`<button class="option" onclick="answer(${i},${q[2]},'${skill}')">${o}</button>`).join("")}`)}
+window.answer=function(ch,cor,sn){if(ch===cor)score++;cur++;
+if(cur<qs.length){show()}else{state.tests++;state.coins+=20;if(score>=2)state.verified++;save();
+openModal(`<div style="text-align:center"><div class="score">${Math.round(score/qs.length*100)}%</div><h2>${score>=2?"🎉 Skill Verified!":"Keep Practicing!"}</h2><p>You scored <b>${score}/${qs.length}</b> in ${sn}.</p><p>🪙 +20 SkillCoins</p><button class="primary" onclick="closeModal();go('tests')">Done</button></div>`)}};
+show()}
+
+function challenges(){title.textContent="Challenges";
+const l=["Build a Python calculator","Solve 3 array problems","Design a student dashboard","Create a responsive landing page","Write 5 SQL queries","Make a GitHub README"];
+app.innerHTML=ph("🎯 Skill Challenges","Prove your skills with practical challenges.")+`<div class="grid">${l.map((c,i)=>`<div class="card"><span class="badge">+${30+i*5} COINS</span><h3>${c}</h3><p class="muted">Practical challenge</p><button class="secondary" onclick="completeChallenge('${c}',${30+i*5})">Accept Challenge</button></div>`).join("")}</div>`}
+function completeChallenge(n,c){state.coins+=c;save();toast(`Challenge accepted! +${c} SkillCoins`)}
+
+function community(){title.textContent="Group Swaps";
+const g=["DSA Array Study Circle","Python Beginners Workshop","UI/UX Portfolio Review","Git &amp; Open Source Room","CSE Interview Practice","Web Development Sprint"];
+app.innerHTML=ph("👥 Group Swaps &amp; Workshops","Learn together with multiple students.")+`<div class="grid">${g.map((n,i)=>`<div class="card"><h3>${n}</h3><p class="muted">👥 ${4+i} students • 🕐 ${6+i}:00 PM</p><span class="chip">Skill Exchange Room</span>
+<div class="actions"><button class="primary" onclick="toast('Joined ${n}!')">Join Group</button><button class="secondary" onclick="toast('Workshop details opened')">Details</button></div></div>`).join("")}</div>`}
+
+function chat(){title.textContent="Chat";
+app.innerHTML=ph("💬 Chats","Coordinate your next SkillSync swap.")+`<div class="grid">${students.slice(0,6).map(s=>`<div class="card"><div class="pt">${av(s.name,s.initial)}<div><strong>${s.name}</strong><p class="muted" style="margin:0">${s.teach} ↔ ${s.want}</p></div></div><div class="actions"><button class="primary" onclick="openChat('${s.name}')">Open Chat</button></div></div>`).join("")}</div>`}
+let chatWith="";
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const thread=()=>(state.chats[chatWith]||[{me:0,t:"Hi! Ready for our SkillSync session?"}]).map(m=>`<div class="bub ${m.me?"me":""}">${m.t}</div>`).join("");
+const scr=()=>{const t=document.getElementById("thread");if(t)t.scrollTop=t.scrollHeight};
+function openChat(n){chatWith=n;openModal(`<h2>💬 Chat with ${n}</h2><div class="thread" id="thread">${thread()}</div><div class="actions"><input id="msg" class="ci" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendMessage()"><button class="primary" style="flex:none" onclick="sendMessage()">Send</button></div>`);scr()}
+function sendMessage(){const i=document.getElementById("msg"),m=i.value.trim();if(!m)return;const w=chatWith;(state.chats[w]=state.chats[w]||[{me:0,t:"Hi! Ready for our SkillSync session?"}]).push({me:1,t:esc(m)});save();i.value="";document.getElementById("thread").innerHTML=thread();scr();
+const R=["Sounds great! 👍","Let me check my schedule and get back to you.","Perfect, see you in the session!","Can we start with the basics first?","Awesome, I will prepare some examples."];
+setTimeout(()=>{state.chats[w].push({me:0,t:R[Math.floor(Math.random()*R.length)]});save();if(chatWith===w&&document.getElementById("thread")){document.getElementById("thread").innerHTML=thread();scr()}},900)}
+
+function schedule(){title.textContent="Schedule";
+app.innerHTML=ph("📅 Availability &amp; Schedule","Plan your skill exchanges.")+`<div class="card"><h3>Upcoming Sessions</h3>
+<div class="leader"><b>Today</b><span style="flex:1">7:00 PM — Rahul • DSA ↔ Python</span><button class="secondary" onclick="toast('Reminder set!')">🔔 Remind</button></div>
+<div class="leader"><b>Tomorrow</b><span style="flex:1">6:30 PM — Priya • UI/UX ↔ JavaScript</span><button class="secondary" onclick="toast('Calendar updated!')">Add</button></div>
+<div class="leader"><b>Sunday</b><span style="flex:1">5:00 PM — Group Web Workshop</span><button class="secondary" onclick="toast('Added to calendar!')">Add</button></div></div>`}
+
+function coins(){title.textContent="SkillCoins";
+app.innerHTML=ph("🪙 SkillCoins","Teach, learn and earn.")+`<div class="stats"><div class="stat"><span class="muted">Balance</span><div class="num">${state.coins}</div></div><div class="stat"><span class="muted">Teaching</span><div class="num">+40</div></div><div class="stat"><span class="muted">Test</span><div class="num">+20</div></div><div class="stat"><span class="muted">Challenge</span><div class="num">+30</div></div></div>
+<div class="card"><h3>How to earn</h3><p>🎓 Teach a skill — <b>+40</b></p><p>📝 Pass a test — <b>+20</b></p><p>🎯 Complete a challenge — <b>+30</b></p><p>👥 Host a group swap — <b>+50</b></p></div>`}
+
+function leaderboard(){title.textContent="Leaderboard";
+const n0=["Aarav Mehta","Neha Verma","Rahul Sharma","Priya Singh","Karan Singh","Simran Kaur","You"].map((x,i)=>[x,x==="You"?state.coins:780-i*73]).sort((a,b)=>b[1]-a[1]),n=n0.map(x=>x[0]);
+app.innerHTML=ph("🏆 SkillSync Leaderboard","Top contributors this month.")+`<div class="card">${n.map((x,i)=>`<div class="leader"${x==="You"?' style="background:color-mix(in srgb,var(--b) 10%,transparent);border-radius:12px;padding-left:10px"':""}><span class="rank">#${i+1}</span>${av(x,x.split(" ").map(w=>w[0]).join(""),38)}<strong style="flex:1">${x}${x==="You"?" ⭐":""}</strong><span>🪙 ${n0[i][1]}</span></div>`).join("")}</div>`}
+
+function progress(){title.textContent="My Progress";
+const s=[["Python",80],["DSA",65],["UI/UX",55],["Communication",72]];
+app.innerHTML=ph("📈 My Progress","Track your learning growth.")+`<div class="grid">${s.map(k=>`<div class="card"><h3>${k[0]}</h3><div class="progress"><i style="width:${k[1]}%"></i></div><b>${k[1]}% verified</b><p class="muted">Last activity: this week</p></div>`).join("")}</div>
+<div class="card" style="margin-top:16px"><h3>📂 Learning History</h3><p>Python Swap — Completed ✓</p><p>DSA Swap — Completed ✓</p><p>JavaScript Swap — Completed ✓</p></div>`}
+
+function achievements(){title.textContent="Achievements";
+const a=[["🤝","First Swap","Complete your first exchange",state.swaps>=1],["🪙","Coin Collector","Earn 200 SkillCoins",state.coins>=200],["🔥","7 Day Streak","Learn for 7 days",state.streak>=7],["🏅","Test Master","Pass 3 skill tests",state.tests>=3],["🎓","Great Teacher","Teach 5 students",state.taught>=5],["🌟","Top Rated","Get 5 five-star reviews",false]];
+app.innerHTML=ph("🎖️ Achievements","Collect badges as you contribute.")+`<div class="grid">${a.map(x=>`<div class="card" style="${x[3]?"":"opacity:.6"}"><div style="font-size:36px">${x[0]}</div><h3>${x[1]} ${x[3]?"✓":""}</h3><p class="muted">${x[2]}</p><span class="badge">${x[3]?"UNLOCKED":"LOCKED"}</span></div>`).join("")}</div>`}
+
+function profile(){title.textContent="Profile";
+app.innerHTML=ph("👤 My Profile","Your SkillSync identity.")+`<div class="grid">
+<div class="card"><div class="pt">${av("Raj Karn","RK")}<div><h2 style="margin:0">Raj Karn</h2><span class="muted">CSE Student • ⭐ 4.8</span></div></div>
+<div class="chips"><span class="chip">🔥 ${state.streak}-day streak</span><span class="chip">🪙 ${state.coins} coins</span></div>
+<h3>Skills I teach</h3><p>Python • C++ • HTML/CSS</p><h3>Skills I want</h3><p>DSA • AI/ML • React</p></div>
+<div class="card"><h3>🏅 Verified Skills</h3><p>🐍 Python <b>80%</b> ✓</p><p>⚡ DSA <b>65%</b></p><p>🎨 UI/UX <b>55%</b></p><hr style="border:0;border-top:1px solid var(--line)"><h3>📊 Activity</h3><p>${state.swaps} swaps • ${state.tests} tests • ${state.taught} taught</p></div>
+<div class="card"><h3>📂 Your Custom Skills</h3>${state.requests.length?state.requests.map(r=>`<p>${r.type==="offer"?"🎓":"📚"} ${r.skill}</p>`).join(""):`<p class="muted">No custom skills yet.</p>`}</div></div>
+<div style="margin-top:18px" class="cert"><h2>📜 SkillSync Certificate</h2><p>Complete a swap and pass its test to unlock your certificate.</p><button class="primary" onclick="certificate()">View Certificate</button> <button class="secondary" onclick="resetAll()">Reset my data</button></div>`}
+function certificate(){openModal(`<div class="cert"><div style="font-size:46px">🏅</div><h1>Certificate of Skill Exchange</h1><p>This certifies that</p><h2>Raj Karn</h2><p>successfully participated in the SkillSync community.</p><span class="badge">SKILLSYNC VERIFIED LEARNER</span></div>`)}
+
+function showNotifications(){openModal(`<h2>🔔 Notifications</h2><div class="note">🤝 Rahul accepted your swap request.</div><div class="note">📝 Your Python test is ready.</div><div class="note">🏆 You moved up 4 places on the leaderboard.</div>`);document.getElementById("notifDot").style.display="none"}
+
+const pages={home,discover,matches,offer:()=>formPage("offer"),request,swap,tests:testsPage,challenges,community,chat,schedule,coins,leaderboard,progress,achievements,profile};
+function render(p="home"){if(pages[p])pages[p]()}
+document.querySelectorAll(".nav").forEach(b=>b.addEventListener("click",()=>go(b.dataset.page)));
+window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(pages[h]&&h!==cur)go(h)});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();go("discover");setTimeout(()=>document.getElementById("search").focus(),0)}});
+const h0=location.hash.slice(1);go(pages[h0]?h0:"home");updLvl();
+</script>
+</body>
+</html>
